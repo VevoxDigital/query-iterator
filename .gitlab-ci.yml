@@ -4,6 +4,7 @@ before_script:
 cache:
     key: "$CI_COMMIT_REF_SLUG"
     paths:
+        - "tsconfig.build.tsbuildinfo"
         - "node_modules/"
 
 .base:
@@ -15,13 +16,13 @@ build:
     extends: .base
     stage: build
     script:
-        - "yarn run eslint ./src"
         - "yarn build"
 
 test:
     extends: .base
     stage: test
     script:
+        - "yarn lint"
         - "yarn test"
 
 # TODO automatically create tags from builds on master

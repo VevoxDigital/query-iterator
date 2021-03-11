@@ -8,7 +8,7 @@
         "project": "tsconfig.json",
         "sourceType": "module"
     },
-    "plugins": ["@typescript-eslint", "import"],
+    "plugins": ["@typescript-eslint", "import", "jest"],
     "extends": [
         "eslint:recommended",
         "plugin:@typescript-eslint/recommended",
@@ -40,7 +40,8 @@
             "files": ["**/*.test.ts"],
             "env": {
                 "jest/globals": true
-            }
+            },
+            "extends": ["plugin:jest/recommended", "plugin:jest/style"]
         }
     ]
 }

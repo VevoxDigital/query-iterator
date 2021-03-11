@@ -1,3 +1,3 @@
-describe.only("todo", () => {
+describe("todo", () => {
     test.todo("hello world!");
 });

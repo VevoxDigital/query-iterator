@@ -1,0 +1,36 @@
+image: node:lts
+before_script:
+    - "yarn"
+cache:
+    key: "$CI_COMMIT_REF_SLUG"
+    paths:
+        - "node_modules/"
+
+.base:
+    artifacts:
+        paths:
+            - "lib/"
+
+build:
+    extends: .base
+    stage: build
+    script:
+        - "yarn run eslint ./src"
+        - "yarn build"
+
+test:
+    extends: .base
+    stage: test
+    script:
+        - "yarn test"
+
+# TODO automatically create tags from builds on master
+
+publish:
+    extends: .base
+    stage: deploy
+    only:
+        - "tags"
+    script:
+        - 'npm config set ''//registry.npmjs.org/:_authToken'' "${NPM_TOKEN}"'
+        - "npm publish . --access public --tag $CI_COMMIT_TAG"

@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+        "rootDir": "./src",
+        "baseUrl": "./src",
+        "outDir": "./lib",
+
+        "module": "esnext",
+        "moduleResolution": "node",
+        "target": "ES2018",
+        "lib": ["ESNext"],
+
+        "types": ["jest"],
+
+        "declaration": true,
+        "strict": true,
+        "esModuleInterop": true
+    },
+
+    "include": ["src/**/*.ts"],
+    "exclude": ["node_modules/", "**/*.test.ts"]
+}

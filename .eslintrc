@@ -1,0 +1,46 @@
+{
+    "env": {
+        "es6": true
+    },
+    "ignorePatterns": ["node_modules/**"],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "project": "tsconfig.json",
+        "sourceType": "module"
+    },
+    "plugins": ["@typescript-eslint", "import"],
+    "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:import/typescript"
+    ],
+    "settings": {
+        "import/parsers": {
+            "@typescript-eslint/parser": [".ts", ".tsx"]
+        }
+    },
+    "rules": {
+        "import/order": [
+            "error",
+            {
+                "alphabetize": { "order": "asc" },
+                "groups": [
+                    ["builtin"],
+                    ["internal"],
+                    ["external"],
+                    ["parent", "sibling", "index"],
+                    "unknown"
+                ],
+                "newlines-between": "never"
+            }
+        ]
+    },
+    "overrides": [
+        {
+            "files": ["**/*.test.ts"],
+            "env": {
+                "jest/globals": true
+            }
+        }
+    ]
+}
